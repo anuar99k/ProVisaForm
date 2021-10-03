@@ -1,55 +1,51 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+	<v-app>
+		<v-app-bar app color="green accent-3">
+			<Header />
+		</v-app-bar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+		<v-main class="main">
+			<router-view />
+		</v-main>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+		<Footer />
+	</v-app>
 </template>
 
 <script>
+import Header from '@/components/public/Header';
+import Footer from '@/components/public/Footer';
 
 export default {
-  name: 'App',
+	name: 'App',
 
-  data: () => ({
-    //
-  }),
+	components: {
+		Header, Footer
+	}
 };
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Pattaya&family=Roboto+Condensed:wght@400;700&family=Rubik&display=swap');
+
+// .main {
+// 	background: url("./assets/images/New-York-City-Backgr.jpg") no-repeat center fixed;
+// 	background-size: cover;
+// 	.imageCover {
+// 		height: 100vh;
+// 		width: 100%;
+// 		position: absolute;
+// 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.70), rgba(0,0,0,0.70));
+// 	}
+// 	.content {
+// 		position: relative;
+// 	}
+// }
+
+html, body, #app {
+	/* font-family: 'Pacifico', cursive;
+	font-family: 'Pattaya', sans-serif;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-family: 'Rubik', sans-serif; */
+}
+</style>

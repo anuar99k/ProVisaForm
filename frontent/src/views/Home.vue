@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+	<div>
+		<GreenCardForm />
+	</div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+import GreenCardForm from '../components/public/GreenCardForm'
 
-  export default {
-    name: 'Home',
+export default {
+	name: 'Home',
 
-    components: {
-      HelloWorld,
-    },
-  }
+	components: {
+		GreenCardForm,
+	},
+}
 </script>
