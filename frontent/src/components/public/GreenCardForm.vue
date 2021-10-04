@@ -1,5 +1,5 @@
 <template>
-	<v-form>
+	<v-form ref="form">
 	<v-container class="greenCardForm">
 			<v-row class="mt-6 mb-7">
 				<span class="mainTitle">
@@ -347,7 +347,8 @@
 			</div>
 
 			<v-row class="justify-center my-10">
-				<v-btn class="sendFormButton" color="green accent-4" rounded dark x-large>
+				<v-btn @click="Submit()" :loading="loading" class="sendFormButton" 
+						color="green accent-4" rounded dark x-large>
 					<span>Отправить анкету</span>
 				</v-btn>
 			</v-row>
@@ -423,6 +424,8 @@ export default {
 					birthDateMenu: false
 				}
 			],
+
+			loading: false,
 
 			spouseCardIsVisible: false,
 			completedEducationItems: [
@@ -526,6 +529,50 @@ export default {
 				birthDateMenu: false
 			}
 			this.children.push(child);
+		},
+		Submit() {
+			if (this.$refs.form.validate()) {
+				//this.errorMessages = [];
+                this.loading = true;
+                let data = {
+					lastName: this.lastName,
+					firstName: this.firstName,
+					lastNameLatin: this.lastNameLatin,
+					firstNameLatin: this.firstNameLatin,
+					birthCountry: this.birthCountry,
+					birthCity: this.birthCity,
+					birthDateFormatted: this.birthDateFormatted,
+					completedEducation: this.completedEducation,
+					phoneNumber: this.phoneNumber,
+					email: this.email,
+					address: this.address,
+					passportSeriesAndNumber: this.passportSeriesAndNumber,
+					passportСountryIssuer: this.passportСountryIssuer,
+					passportValidDateFormatted: this.passportValidDateFormatted,
+					applicantPhoto: this.applicantPhoto,
+					familyStatus: this.familyStatus,
+					spouseFirstNameLatin: this.spouseFirstNameLatin,
+					spouseLastNameLatin: this.spouseLastNameLatin,
+					spouseBirthCountry: this.spouseBirthCountry,
+					spouseBirthCity: this.spouseBirthCity,
+					spouseBirthDateFormatted: this.spouseBirthDateFormatted,
+					spouseCompletedEducation: this.spouseCompletedEducation,
+					spousePassportSeriesAndNumber: this.spousePassportSeriesAndNumber,
+					spousePassportСountryIssuer: this.spousePassportСountryIssuer,
+					spousePassportValidDateFormatted: this.spousePassportValidDateFormatted,
+					spousePhoto: this.spousePhoto,
+					hasChildren: this.hasChildren,
+					children: this.children
+				};
+
+                this.$store.dispatch('addApplication', data)
+                    .then(() => {alert('форма успешно отправлена')})
+                    .catch(() => {
+                        //this.errorMessages.push(error.data.message);
+                        //this.errorMessages = this.errorMessages.concat(error.data.errors);
+                    })
+                    .finally(() => this.loading = false);
+			}
 		}
 	}
 }
